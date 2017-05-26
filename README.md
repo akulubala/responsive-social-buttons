@@ -3,9 +3,9 @@
 Responsive social buttons with webpack.Easily customize it by tweaking a few variables. SVGs allow for tiny file size and retina support.
 
 
-<a href="http://rrssb.ml/"><img align="right" src="http://rrssb.ml/media/rrssb-preview.png" width="359" height="auto"/></a>
+<a href="https://akulubala.github.io"><img align="right" src="https://akulubala.github.io/responsive-social-buttons/resource/images/rrssb-preview.png" width="359" height="auto"/></a>
 
-<img src="http://rrssb.ml/media/rrssb-preview.gif" width="100%" height="auto"/>
+<img src="https://akulubala.github.io/responsive-social-buttons/resource/images/rrssb-preview.gif" width="100%" height="auto"/>
 
 ## Usage
 1) Copy css to your document or link to the css file in header:
@@ -50,15 +50,12 @@ Responsive social buttons with webpack.Easily customize it by tweaking a few var
 - Only copy the `<li>`s of the buttons you want (index.html has examples of all available types).
 - Adding a class of `popup` to the anchor tag for each share button will make the share dialog open in a popup, rather than a new window. (Good for Facebook, Twitter, Google Plus, etc.)
 - Buttons will automatically flow to the size of the ul `rrssb-buttons`. If fixed sized buttons are needed, nest `rrssb-buttons` in a fixed-width container.
-- Each sharing URL requires various parameters that allow you to pass through messaging in the sharing dialog. A useful tool for URI escaping any messaging that needs to pass through the share URL can be found [**here**](http://meyerweb.com/eric/tools/dencoder/).
+- Each sharing URL requires various parameters that allow you to pass through messaging in the sharing dialog.
 - Alternatively, all share metadata and links can be configured [using Javascript](#javascript)
 
-3) Copy `rrssb.min.js` to your document or link to javascript files at the bottom of your page (before the closing body tag for best results - jQuery CDN, [**jQuery fallback**](http://css-tricks.com/snippets/jquery/fallback-for-cdn-hosted-jquery/), and `rrssb.min.js`):
-
 ```html
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery.1.10.2.min.js"><\/script>')</script>
-<script src="js/rrssb.min.js"></script>
+
+<script src="dist/responsive-social-buttons"></script>
 ```
 
 <a name="javascript"></a>
@@ -87,11 +84,15 @@ jQuery(document).ready(function ($) {
 </script>
 ```
 
+** notice: **
+
+-- you can also use webpack to modulize js and css. source files are under resource folder.
+
 ## Other install options:
 
 Service     | Link
 :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-npm         | `npm install rrssb`
+npm         | `npm i responsive-social-buttons`
 
 
 ## Support
@@ -104,4 +105,4 @@ Requires [**SVG**](http://caniuse.com/svg)
 - run `node_modules/.bin/webpack-dev-server` to create a local server at `http://localhost:8081` and watch for file changes.
 
 ## About
-responsive-social-buttons is a modify version of [rrssb](https://github.com/kni-labs/rrssb), add webpack, wechat, weibo support
+responsive-social-buttons is a modify version of [rrssb](https://github.com/kni-labs/rrssb), add webpack, wechat, weibo support, for more detail you can check original version
