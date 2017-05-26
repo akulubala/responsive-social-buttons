@@ -1,0 +1,40 @@
+{
+  "name": "responsive-social-buttons",
+  "version": "1.0.0",
+  "description": "Responsive social buttons with webpack.Easily customize it by tweaking a few variables. SVGs allow for tiny file size and retina support.",
+  "main": "dist/social-buttons.js",
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "imagemin": "^5.3.1",
+    "jquery": "^3.2.1",
+    "qrcodejs2": "^0.0.2",
+    "resolve-url-loader": "^2.0.2",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.1",
+    "sweetalert": "^1.1.3",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "node_modules/.bin/webpack",
+    "production": "NODE_ENV=production node_modules/.bin/webpack",
+    "watch": "npm run dev -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akulubala/responsive-social-buttons.git"
+  },
+  "keywords": ["social share buttons", "Responsive", "Webpack", "Wechat", "Weibo", "Douban"],
+  "author": "<akulubala@gmail.com> (http://github.com/akulubala)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akulubala/responsive-social-buttons/issues"
+  },
+  "homepage": "https://github.com/akulubala/responsive-social-buttons#readme"
+}
