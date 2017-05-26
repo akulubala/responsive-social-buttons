@@ -20,17 +20,26 @@
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "fs-extra": "^3.0.1"
+  },
   "scripts": {
     "dev": "node_modules/.bin/webpack",
-    "production": "NODE_ENV=production node_modules/.bin/webpack",
+    "github": "NODE_ENV=production node_modules/.bin/webpack",
     "watch": "npm run dev -- --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/akulubala/responsive-social-buttons.git"
   },
-  "keywords": ["social share buttons", "Responsive", "Webpack", "Wechat", "Weibo", "Douban"],
+  "keywords": [
+    "social share buttons",
+    "Responsive",
+    "Webpack",
+    "Wechat",
+    "Weibo",
+    "Douban"
+  ],
   "author": "<akulubala@gmail.com> (http://github.com/akulubala)",
   "license": "MIT",
   "bugs": {

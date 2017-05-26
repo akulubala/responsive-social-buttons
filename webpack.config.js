@@ -16,7 +16,7 @@ module.exports = {
 		]
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, inProduction ? 'dist' : 'responsive-social-buttons/dist'),
 		filename: '[name].js' // [name] point to entry { app } value, chunkhash will give every file a unique hash
 	},
 	module: {
@@ -91,6 +91,7 @@ module.exports = {
 				}).then(() => {
 					console.log('Images optimized');
 				});
+				require('fs-extra').remove(path.resolve(__dirname, inProduction ? 'responsive-social-buttons' : 'dist'));
 	    	});
 	    }
 	]
@@ -102,7 +103,7 @@ if (inProduction === true) {
 	);
 	module.exports.plugins.push(
 		new CleanWebpackPlugin(['dist'], {
-			root: __dirname,
+			root: path.resolve(__dirname, !inProduction ? 'responsive-social-buttons' : ''),
 			verbose: true, // write logs to console
 			dry: false // emulate delete?
 		})
