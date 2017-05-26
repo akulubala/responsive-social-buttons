@@ -1,6 +1,6 @@
 {
   "name": "responsive-social-buttons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Responsive social buttons with webpack.Easily customize it by tweaking a few variables. SVGs allow for tiny file size and retina support.",
   "main": "dist/social-buttons.js",
   "dependencies": {
