@@ -19,14 +19,6 @@ Responsive social buttons with webpack.Easily customize it by tweaking a few var
 ```html
 <!-- Buttons start here. Copy this ul to your document. -->
 <ul class="rrssb-buttons clearfix">
-  <li class="rrssb-email">
-    <a href="mailto:?Subject=Your%20Subject%20Here">
-      <span class="rrssb-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21.386 2.614H2.614A2.345 2.345 0 0 0 .279 4.961l-.01 14.078a2.353 2.353 0 0 0 2.346 2.347h18.771a2.354 2.354 0 0 0 2.347-2.347V4.961a2.356 2.356 0 0 0-2.347-2.347zm0 4.694L12 13.174 2.614 7.308V4.961L12 10.827l9.386-5.866v2.347z"/></svg>
-      </span>
-      <span class="rrssb-text">email</span>
-    </a>
-  </li>
   <li class="rrssb-wechat">
     <a class="popup" data-url="https://www.npmjs.com/package/responsive-social-buttons" data-title="扫描二维码分享至微信" data-confirm-text="取消">
       <span class="rrssb-icon">
@@ -47,9 +39,9 @@ Responsive social buttons with webpack.Easily customize it by tweaking a few var
 <!-- Buttons end here -->
 ```
 
-- Only copy the `<li>`s of the buttons you want (index.html has examples of all available types).
+- Only copy the `<ul>` with `<li>`s of the buttons you want (index.html has examples of all available types).
 - Adding a class of `popup` to the anchor tag for each share button will make the share dialog open in a popup, rather than a new window. (Good for Facebook, Twitter, Google Plus, etc.)
-- Buttons will automatically flow to the size of the ul `rrssb-buttons`. If fixed sized buttons are needed, nest `rrssb-buttons` in a fixed-width container.
+- ul with class `fixed-size` will not follow responsive
 - Each sharing URL requires various parameters that allow you to pass through messaging in the sharing dialog.
 - Alternatively, all share metadata and links can be configured [using Javascript](#javascript)
 
@@ -88,15 +80,17 @@ jQuery(document).ready(function ($) {
 
 -- you can also use webpack to modulize js and css. source files are under resource folder.
 
+## Example:
+
+[https://akulubala.github.io/responsive-social-buttons/](https://akulubala.github.io/responsive-social-buttons/)
+
 ## Other install options:
 
-Service     | Link
-:---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-npm         | `npm i responsive-social-buttons`
+npm | `npm i responsive-social-buttons`
 
 
 ## Support
-Currently tested between [**140px**](https://www.dropbox.com/s/2k6lcebg2887ge3/Screenshot%202014-02-18%2009.45.45.png) and [**15,465px**](https://www.dropbox.com/s/1juq03011lixk3r/Screenshot%202014-02-18%2009.43.57.png) on current versions of Chrome 33, Safari 7.0.2, Firefox 27, Opera 20, and IE9+.
+Chrome 33, Safari 7.0.2, Firefox 27, Opera 20, and IE9+.
 
 Requires [**SVG**](http://caniuse.com/svg)
 

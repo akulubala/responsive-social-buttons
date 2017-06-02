@@ -121,50 +121,41 @@ var QRCode = require('qrcodejs2');
 		}
 	};
 
-	var setPercentBtns = function() {
-		// loop through each instance of buttons
-		$('.rrssb-buttons').each(function(index) {
-			var self = $(this);
+	var setPercentBtns = function(btn) {
+			var self = btn;
 			var buttons = $('li:visible', self);
 			var numOfButtons = buttons.length;
 			var initBtnWidth = 100 / numOfButtons;
-
 			// set initial width of buttons
 			buttons.css('width', initBtnWidth + '%').attr('data-initwidth',initBtnWidth);
-		});
 	};
 
-	var makeExtremityBtns = function() {
-		// loop through each instance of buttons
-		$('.rrssb-buttons').each(function(index) {
-			var self = $(this);
-			//get button width
-			var containerWidth = self.width();
-			var buttonWidth = $('li', self).not('.small').eq(0).width();
-			var buttonCountSmall = $('li.small', self).length;
+	var makeExtremityBtns = function(btn) {
+		var self = btn;
+		//get button width
+		var containerWidth = self.width();
+		var buttonWidth = $('li', self).not('.small').eq(0).width();
+		var buttonCountSmall = $('li.small', self).length;
+		// enlarge buttons if they get wide enough
+		if (buttonWidth > 170 && buttonCountSmall < 1) {
+			self.addClass('large-format');
+			var fontSize = buttonWidth / 12 + 'px';
+			self.css('font-size', fontSize);
+		} else {
+			self.removeClass('large-format');
+			self.css('font-size', '');
+		}
 
-			// enlarge buttons if they get wide enough
-			if (buttonWidth > 170 && buttonCountSmall < 1) {
-				self.addClass('large-format');
-				var fontSize = buttonWidth / 12 + 'px';
-				self.css('font-size', fontSize);
-			} else {
-				self.removeClass('large-format');
-				self.css('font-size', '');
-			}
-
-			if (containerWidth < buttonCountSmall * 25) {
-				self.removeClass('small-format').addClass('tiny-format');
-			} else {
-				self.removeClass('tiny-format');
-			}
-		});
+		if (containerWidth < buttonCountSmall * 25) {
+			self.removeClass('small-format').addClass('tiny-format');
+		} else {
+			self.removeClass('tiny-format');
+		}
 	};
 
-	var backUpFromSmall = function() {
+	var backUpFromSmall = function(btn) {
 		// loop through each instance of buttons
-		$('.rrssb-buttons').each(function(index) {
-			var self = $(this);
+			var self = btn;
 
 			var buttons = $('li', self);
 			var smallButtons = buttons.filter('.small');
@@ -173,16 +164,15 @@ var QRCode = require('qrcodejs2');
 			var upCandidate = smallButtons.eq(0);
 			var nextBackUp = parseFloat(upCandidate.attr('data-size')) + 55;
 			var smallBtnCount = smallButtons.length;
-
 			if (smallBtnCount === buttons.length) {
 				var btnCalc = smallBtnCount * 42;
+				console.log(self);
 				var containerWidth = self.width();
 
 				if ((btnCalc + nextBackUp) < containerWidth) {
 					self.removeClass('small-format');
 					smallButtons.eq(0).removeClass('small');
-
-					sizeSmallBtns();
+					sizeSmallBtns(btn);
 				}
 
 			} else {
@@ -199,121 +189,120 @@ var QRCode = require('qrcodejs2');
 
 				if (nextBackUp < spaceLeft) {
 					upCandidate.removeClass('small');
-					sizeSmallBtns();
+					sizeSmallBtns(btn);
 				}
 			}
-		});
 	};
 
-	var checkSize = function(init) {
+	var checkSize = function(init, btn) {
 		// loop through each instance of buttons
-		$('.rrssb-buttons').each(function(index) {
+		var self = btn;
+		var buttons = $('li', self);
+		// get buttons in reverse order and loop through each
+		$(buttons.get().reverse()).each(function(index, count) {
 
-			var self = $(this);
-			var buttons = $('li', self);
+			var button = $(this);
+			if (button.hasClass('small') === false) {
+				var txtWidth = parseFloat(button.attr('data-size')) + 55;
+				var btnWidth = parseFloat(button.width());
 
-			// get buttons in reverse order and loop through each
-			$(buttons.get().reverse()).each(function(index, count) {
-
-				var button = $(this);
-
-				if (button.hasClass('small') === false) {
-					var txtWidth = parseFloat(button.attr('data-size')) + 55;
-					var btnWidth = parseFloat(button.width());
-
-					if (txtWidth > btnWidth) {
-						var btn2small = buttons.not('.small').last();
-						$(btn2small).addClass('small');
-						sizeSmallBtns();
-					}
+				if (txtWidth > btnWidth) {
+					var btn2small = buttons.not('.small').last();
+					$(btn2small).addClass('small');
+					sizeSmallBtns(btn);
 				}
-
-				if (!--count) backUpFromSmall();
-			});
+			}
+			if (!--count) {
+				backUpFromSmall(btn);
+			} 
 		});
-
 		// if first time running, put it through the magic layout
 		if (init === true) {
-			rrssbMagicLayout(sizeSmallBtns);
+			rrssbMagicLayout(sizeSmallBtns, btn);
 		}
 	};
 
-	var sizeSmallBtns = function() {
+	var sizeSmallBtns = function(btn) {
 		// loop through each instance of buttons
-		$('.rrssb-buttons').each(function(index) {
-			var self = $(this);
-			var regButtonCount;
-			var regPercent;
-			var pixelsOff;
-			var magicWidth;
-			var smallBtnFraction;
-			var buttons = $('li', self);
-			var smallButtons = buttons.filter('.small');
+		var self = btn;
+		var regButtonCount;
+		var regPercent;
+		var pixelsOff;
+		var magicWidth;
+		var smallBtnFraction;
 
-			// readjust buttons for small display
-			var smallBtnCount = smallButtons.length;
+		var buttons = $('li', self);
 
-			// make sure there are small buttons
-			if (smallBtnCount > 0 && smallBtnCount !== buttons.length) {
-				self.removeClass('small-format');
+		var smallButtons = buttons.filter('.small');
+		// readjust buttons for small display
+		var smallBtnCount = smallButtons.length;
 
-				//make sure small buttons are square when not all small
-				smallButtons.css('width','42px');
-				pixelsOff = smallBtnCount * 42;
-				regButtonCount = buttons.not('.small').length;
-				regPercent = 100 / regButtonCount;
-				smallBtnFraction = pixelsOff / regButtonCount;
+		// make sure there are small buttons
+		if (smallBtnCount > 0 && smallBtnCount !== buttons.length) {
+			self.removeClass('small-format');
 
-				// if calc is not supported. calculate the width on the fly.
-				if (support.calc === false) {
-					magicWidth = ((self.innerWidth()-1) / regButtonCount) - smallBtnFraction;
-					magicWidth = Math.floor(magicWidth*1000) / 1000;
-					magicWidth += 'px';
-				} else {
-					magicWidth = support.calc+'('+regPercent+'% - '+smallBtnFraction+'px)';
-				}
+			//make sure small buttons are square when not all small
+			smallButtons.css('width','42px');
+			pixelsOff = smallBtnCount * 42;
+			regButtonCount = buttons.not('.small').length;
+			regPercent = 100 / regButtonCount;
+			smallBtnFraction = pixelsOff / regButtonCount;
 
-				buttons.not('.small').css('width', magicWidth);
-
-			} else if (smallBtnCount === buttons.length) {
-				// if all buttons are small, change back to percentage
-				self.addClass('small-format');
-				setPercentBtns();
+			// if calc is not supported. calculate the width on the fly.
+			if (support.calc === false) {
+				magicWidth = ((self.innerWidth()-1) / regButtonCount) - smallBtnFraction;
+				magicWidth = Math.floor(magicWidth*1000) / 1000;
+				magicWidth += 'px';
 			} else {
-				self.removeClass('small-format');
-				setPercentBtns();
+				magicWidth = support.calc+'('+regPercent+'% - '+smallBtnFraction+'px)';
 			}
-		}); //end loop
-
-		makeExtremityBtns();
+			buttons.not('.small').css('width', magicWidth);
+		} else if (smallBtnCount === buttons.length) {
+			// if all buttons are small, change back to percentage
+			self.addClass('small-format');
+			setPercentBtns(btn);
+		} else {
+			self.removeClass('small-format');
+			setPercentBtns(btn);
+		}
+		makeExtremityBtns(btn);
 	};
 
 	var rrssbInit = function() {
-		$('.rrssb-buttons').each(function(index) {
-			$(this).addClass('rrssb-'+(index + 1));
-		});
-
 		detectCalcSupport();
+		$('.rrssb-buttons').each(function(index) {
+			//grab initial text width of each button and add as data attr
+			$(this).find('li .rrssb-text').each(function(index) {
+				var buttonTxt = $(this);
+				var txtWdth = buttonTxt.width();
+				buttonTxt.closest('li').attr('data-size', txtWdth);
+			});
 
-		setPercentBtns();
+			$(this).addClass('rrssb-'+(index + 1));
+			if ( !(
+					$(this).hasClass('small-format') || 
+					$(this).hasClass('tiny-format') ||
+					$(this).hasClass('round-format')
+				  )
+			    ) {
 
-		// grab initial text width of each button and add as data attr
-		$('.rrssb-buttons li .rrssb-text').each(function(index) {
-			var buttonTxt = $(this);
-			var txtWdth = buttonTxt.width();
-			buttonTxt.closest('li').attr('data-size', txtWdth);
+				setPercentBtns($(this));
+				checkSize(true, $(this));
+
+			} else {
+				$(this).find('li').each(function() {
+					$(this).addClass('small');
+				})
+			}
+			
 		});
-
-		checkSize(true);
 	};
 
-	var rrssbMagicLayout = function(callback) {
+	var rrssbMagicLayout = function(callback, btn) {
 		//remove small buttons before each conversion try
-		$('.rrssb-buttons li.small').removeClass('small');
-
-		checkSize();
-
-		callback();
+		btn.find('li.small').removeClass('small');
+		checkSize(false, btn);
+		callback(btn);
 	};
 
 	var popupCenter = function(url, title, w, h) {
@@ -383,7 +372,6 @@ var QRCode = require('qrcodejs2');
 		/*
 		 * Event listners
 		 */
-
 		try {
 			$(document).on('click', '.rrssb-buttons a.popup', {}, function popUp(e) {
 				var self = $(this);
@@ -399,19 +387,21 @@ var QRCode = require('qrcodejs2');
 		}
 
 		// resize function
+		var rrssbButtons = $('.rrssb-buttons');
 		$(window).resize(function () {
-
-			rrssbMagicLayout(sizeSmallBtns);
-
-			waitForFinalEvent(function(){
-				rrssbMagicLayout(sizeSmallBtns);
-			}, 200, "finished resizing");
+			$.each(rrssbButtons, function() {
+				var self = $(this);
+				if (!self.hasClass('fixed-size')) {
+					rrssbMagicLayout(sizeSmallBtns, self);
+					waitForFinalEvent(function() {
+						rrssbMagicLayout(sizeSmallBtns, self);
+					}, 200, "finished resizing");
+				}
+			})
 		});
-
-		rrssbInit();
 	});
-
-	// Make global
-	window.rrssbInit = rrssbInit;
-
+	/**
+	 * init js
+	 */
+	rrssbInit();
 })(window, jQuery, QRCode);

@@ -1,4 +1,4 @@
-// Ridiculously Responsive Social Sharing Buttons
+// Responsive Social Sharing Buttons
 // Twitter: @akulubala
 //
 //        ___           ___
@@ -39,13 +39,14 @@ $rrssb-xing: #005A5F !default;
 $rrssb-wechat: #2E7D32 !default;
 $rrssb-weibo: #D50000 !default;
 $rrssb-douban: #66BB6A !default;
+$rrssb-stackoverflow: #F48024 !default;
 
 // Set the border radius for the buttons
 $rrssb-border-radius: 2px !default;
 $rrssb-main-font: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 // Variable list for all social button colors to be iterated over.
-$social-list: (rrssb-email $rrssb-email, rrssb-facebook $rrssb-facebook, rrssb-tumblr $rrssb-tumblr, rrssb-linkedin $rrssb-linkedin, rrssb-twitter $rrssb-twitter, rrssb-googleplus $rrssb-googleplus, rrssb-youtube $rrssb-youtube, rrssb-reddit $rrssb-reddit, rrssb-pinterest $rrssb-pinterest, rrssb-pocket $rrssb-pocket, rrssb-github $rrssb-github, rrssb-instagram $rrssb-instagram, rrssb-delicious $rrssb-delicious, rrssb-vk $rrssb-vk, rrssb-hackernews $rrssb-hackernews,rrssb-whatsapp $rrssb-whatsapp, rrssb-print $rrssb-print, rrssb-xing $rrssb-xing, rrssb-wechat $rrssb-wechat, rrssb-weibo $rrssb-weibo, rrssb-douban $rrssb-douban);
+$social-list: (rrssb-email $rrssb-email, rrssb-facebook $rrssb-facebook, rrssb-tumblr $rrssb-tumblr, rrssb-linkedin $rrssb-linkedin, rrssb-twitter $rrssb-twitter, rrssb-googleplus $rrssb-googleplus, rrssb-youtube $rrssb-youtube, rrssb-reddit $rrssb-reddit, rrssb-pinterest $rrssb-pinterest, rrssb-pocket $rrssb-pocket, rrssb-github $rrssb-github, rrssb-instagram $rrssb-instagram, rrssb-delicious $rrssb-delicious, rrssb-vk $rrssb-vk, rrssb-hackernews $rrssb-hackernews,rrssb-whatsapp $rrssb-whatsapp, rrssb-print $rrssb-print, rrssb-xing $rrssb-xing, rrssb-wechat $rrssb-wechat, rrssb-weibo $rrssb-weibo, rrssb-douban $rrssb-douban, rrssb-stackoverflow $rrssb-stackoverflow);
 
 
 // fade-in animation so it doesnt blink
@@ -207,6 +208,7 @@ $social-list: (rrssb-email $rrssb-email, rrssb-facebook $rrssb-facebook, rrssb-t
     li {
       height: 80%;
       padding: 0 1px;
+      width: 36px;
 
       a {
         .rrssb-icon {
@@ -224,12 +226,38 @@ $social-list: (rrssb-email $rrssb-email, rrssb-facebook $rrssb-facebook, rrssb-t
     }
   }
 
+  &.round-format {
+    padding-top: 5px;
+
+    li {
+      height: 100%;
+      padding: 0 1px;
+      width: 36px;
+
+      a {
+         border-radius: 100% !important;
+         height: 34px;
+        .rrssb-icon {
+          height: 100%;
+          padding-top: 0;
+
+          svg {
+            position: relative;
+            top: 8px;
+          }
+        }
+      }
+    }
+  }
+
   &.tiny-format {
     height: 22px;
     position: relative;
 
     li {
       padding-right: 7px;
+      width: 36px;
+
 
       a {
         background-color: transparent;

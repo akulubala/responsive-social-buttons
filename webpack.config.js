@@ -91,6 +91,7 @@ module.exports = {
 				}).then(() => {
 					console.log('Images optimized');
 				});
+				// for deploy github, remove useless folder
 				require('fs-extra').remove(path.resolve(__dirname, inProduction ? 'responsive-social-buttons' : 'dist'));
 	    	});
 	    }
