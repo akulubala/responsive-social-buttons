@@ -10,6 +10,7 @@
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.3",
     "extract-text-webpack-plugin": "^2.1.0",
+    "github-fork-ribbon-css": "^0.2.1",
     "imagemin": "^5.3.1",
     "jquery": "^3.2.1",
     "qrcodejs2": "^0.0.2",
