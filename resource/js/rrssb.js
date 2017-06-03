@@ -362,7 +362,8 @@ var QRCode = require('qrcodejs2');
 			  title: image,
 			  text: title,
 			  html: true,
-			  confirmButtonText: confirmText
+			  confirmButtonText: confirmText,
+			  allowOutsideClick: true
 			});
 		})
 	}
