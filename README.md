@@ -1,5 +1,15 @@
 # Responsive Social Sharing Buttons
 
+[![npm](https://img.shields.io/npm/v/responsive-social-buttons.svg?style=plastic)](https://www.npmjs.com/package/responsive-social-buttons)
+
+[![npm](https://img.shields.io/npm/l/responsive-social-buttons.svg?style=plastic)](https://www.npmjs.com/package/responsive-social-buttons)
+
+[![npm](https://img.shields.io/npm/dt/responsive-social-buttons.svg?style=plastic)](https://www.npmjs.com/package/responsive-social-buttons)
+
+[![Travis](https://img.shields.io/travis/akulubala/responsive-social-buttons.svg?style=plastic)](https://github.com/akulubala/responsive-social-buttons)
+
+---
+
 Responsive social buttons with webpack.Easily customize it by tweaking a few variables. SVGs allow for tiny file size and retina support.
 
 
