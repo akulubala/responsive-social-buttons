@@ -1,21 +1,33 @@
 # Responsive Social Sharing Buttons
 
-[![npm](https://img.shields.io/npm/v/responsive-social-buttons.svg?style=plastic)](https://www.npmjs.com/package/responsive-social-buttons)
-
-[![npm](https://img.shields.io/npm/l/responsive-social-buttons.svg?style=plastic)](https://www.npmjs.com/package/responsive-social-buttons)
-
-[![npm](https://img.shields.io/npm/dt/responsive-social-buttons.svg?style=plastic)](https://www.npmjs.com/package/responsive-social-buttons)
-
-[![Travis](https://img.shields.io/travis/akulubala/responsive-social-buttons.svg?style=plastic)](https://github.com/akulubala/responsive-social-buttons)
+<p align="left">
+  <a href="https://www.npmjs.com/package/responsive-social-buttons">
+    <img src="https://img.shields.io/travis/akulubala/responsive-social-buttons.svg?style=plastic" alt="Build Status">
+  </a>
+  <a href="https://www.npmjs.com/package/responsive-social-buttons">
+    <img src="https://img.shields.io/npm/v/responsive-social-buttons.svg?style=plastic" alt="Version">
+  </a>
+  <a href="https://www.npmjs.com/package/responsive-social-buttons">
+    <img src="https://img.shields.io/npm/dt/responsive-social-buttons.svg?style=plastic" alt="Downloads">
+  </a>
+  <a href="https://www.npmjs.com/package/responsive-social-buttons">
+    <img src="https://img.shields.io/github/stars/akulubala/responsive-social-buttons.svg?style=social&label=Star&style=plastic" alt="Stars">
+  </a>
+  <a href="https://www.npmjs.com/package/vue">
+    <img src="https://img.shields.io/npm/l/responsive-social-buttons.svg?style=plastic" alt="License">
+  </a>
+</p>
 
 ---
 
-Responsive social buttons with webpack.Easily customize it by tweaking a few variables. SVGs allow for tiny file size and retina support.
+Responsive social buttons build by webpack.Easily customize it by tweaking a few css class or verialbles. Using SVGs support retina.
 
 
-<a href="https://akulubala.github.io"><img align="right" src="https://akulubala.github.io/responsive-social-buttons/resource/images/rrssb-preview.png" width="359" height="auto"/></a>
+<a href="https://akulubala.github.io"><img align="center" src="https://akulubala.github.io/responsive-social-buttons/resource/images/rrssb-preview.png" width="359" height="auto"/></a>
 
 <img src="https://akulubala.github.io/responsive-social-buttons/resource/images/rrssb-preview.gif" width="100%" height="auto"/>
+
+---
 
 ## Usage
 1) Copy css to your document or link to the css file in header:
@@ -24,11 +36,13 @@ Responsive social buttons with webpack.Easily customize it by tweaking a few var
 <link rel="stylesheet" href="dist/responsive-social-buttons.css" />
 ```
 
+---
+
 2) Copy `.rrssb-buttons` unordered list to desired location(s):
 
 ```html
 <!-- Buttons start here. Copy this ul to your document. -->
-<ul class="rrssb-buttons clearfix">
+<ul class="rrssb-buttons">
   <li class="rrssb-wechat">
     <a class="popup" data-url="https://www.npmjs.com/package/responsive-social-buttons" data-title="扫描二维码分享至微信" data-confirm-text="取消">
       <span class="rrssb-icon">
@@ -49,11 +63,14 @@ Responsive social buttons with webpack.Easily customize it by tweaking a few var
 <!-- Buttons end here -->
 ```
 
-- Only copy the `<ul>` with `<li>`s of the buttons you want (index.html has examples of all available types).
-- Adding a class of `popup` to the anchor tag for each share button will make the share dialog open in a popup, rather than a new window. (Good for Facebook, Twitter, Google Plus, etc.)
-- ul with class `fixed-size` will not follow responsive
-- Each sharing URL requires various parameters that allow you to pass through messaging in the sharing dialog.
-- Alternatively, all share metadata and links can be configured [using Javascript](#javascript)
+>- Only copy the `<ul>` with `<li>`s of the buttons you want (index.html has examples of all available types).
+>- Adding a class of `popup` to the anchor tag for each share button will make the share dialog open in a popup, rather than a new window. (Good for Facebook, Twitter, Google Plus, etc.)
+>- ul with class `fixed-size` will make a fixed size button, check examples
+>- icons folder have all social share buttons you can use
+>- Each sharing URL requires various parameters that allow you to pass through messaging in the sharing dialog.
+>- Alternatively, all share metadata and links can be configured [using Javascript](#javascript)
+>- you can  use webpack to modulize js and css. source files are under resource folder.
+
 
 ```html
 
@@ -63,8 +80,6 @@ Responsive social buttons with webpack.Easily customize it by tweaking a few var
 <a name="javascript"></a>
 
 **Optional: Configure URL and share text with javascript:**<br/> Instead of editing each `href` by hand, you can call some Javascript to set the URLs on each social button automatically.
-
-Note: to support users who have disabled Javascript, you still need to edit the `href`s by hand.
 
 Paste the following before the closing body tag, after the scripts you added in the last section:
 
@@ -86,27 +101,29 @@ jQuery(document).ready(function ($) {
 </script>
 ```
 
-** notice: **
-
--- you can also use webpack to modulize js and css. source files are under resource folder.
+---
 
 ## Example:
 
 [https://akulubala.github.io/responsive-social-buttons/](https://akulubala.github.io/responsive-social-buttons/)
 
+---
 ## Other install options:
 
 npm | `npm i responsive-social-buttons`
 
+---
 
 ## Support
 Chrome 33, Safari 7.0.2, Firefox 27, Opera 20, and IE9+.
 
-Requires [**SVG**](http://caniuse.com/svg)
+---
 
 ### Build setup:
+
 - under root folder, run `npm install` to install the dependencies for this project.
 - run `node_modules/.bin/webpack-dev-server` to create a local server at `http://localhost:8081` and watch for file changes.
+---
 
 ## About
 responsive-social-buttons is a modify version of [rrssb](https://github.com/kni-labs/rrssb), add webpack, wechat, weibo support, for more detail you can check original version
